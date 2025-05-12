@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Aline Del Valle Castillo Bedoya Leon</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="inicio">
+    <h1>Feliz Aniversario de 2 meses ❤️</h1>
+    <button onclick="mostrarLista()">Ver nuestra lista de actividades 💑</button>
+    <button onclick="window.location.href='video.html'">Subir un video 📹</button>
+  </div>
+
+  <div id="lista" style="display: none;">
+    <h2>Lista de actividades que queremos hacer en pareja</h2>
+    <input type="text" id="nuevaActividad" placeholder="Ej: Darnos muchos besos">
+    <button onclick="agregarActividad()">Agregar</button>
+    <ul id="actividades"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
