@@ -40,13 +40,13 @@ ul {
 
 li {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 8px 0;
   background: #ffe6f0;
   padding: 10px 15px;
   border-radius: 10px;
   text-align: left;
+  gap: 10px;
 }
 
 .img-container {
@@ -56,6 +56,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .img-container img {
@@ -67,6 +68,29 @@ li {
 
 li input[type="checkbox"] {
   margin-right: 10px;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+li span {
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  transition: background 0.2s;
+}
+
+/* Solo aplica el hover si tiene la clase 'truncado' */
+li span.truncado:hover {
+  white-space: normal;
+  background: #fff0f5;
+  z-index: 2;
+  position: relative;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 
 li button {
@@ -77,6 +101,7 @@ li button {
   border: none;
   cursor: pointer;
   color: white;
+  flex-shrink: 0;
 }
 
 #lista {

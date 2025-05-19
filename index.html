@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <title>Aline Del Valle Castillo Bedoya Leon</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDKs y configuración -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyC4A0igNsDY01yJ0AP_pbg3QLt20VQq_VM",
+      authDomain: "aline-y-diego-1.firebaseapp.com",
+      databaseURL: "https://aline-y-diego-1-default-rtdb.firebaseio.com",
+      projectId: "aline-y-diego-1",
+      storageBucket: "aline-y-diego-1.appspot.com",
+      messagingSenderId: "1023382860061",
+      appId: "1:1023382860061:web:236ff43a7062b2492371f4",
+      measurementId: "G-HJQPXYLD6X"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
 </head>
 <body>
   <div id="inicio">

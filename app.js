@@ -9,70 +9,91 @@ function agregarActividad() {
   const actividad = input.value.trim();
 
   if (actividad) {
-    let actividades = JSON.parse(localStorage.getItem("actividades")) || [];
-    actividades.push({ texto: actividad, hecha: false }); // Guardar actividad con estado "hecha"
-    localStorage.setItem("actividades", JSON.stringify(actividades));
-    input.value = "";
-    cargarActividades();
+    db.ref('actividades').once('value', snapshot => {
+      let actividades = snapshot.val() || [];
+      actividades.push({ texto: actividad, hecha: false });
+      db.ref('actividades').set(actividades);
+      input.value = "";
+    });
   }
 }
 
 function eliminarActividad(index) {
-  let actividades = JSON.parse(localStorage.getItem("actividades")) || [];
-  actividades.splice(index, 1);
-  localStorage.setItem("actividades", JSON.stringify(actividades));
-  cargarActividades();
+  db.ref('actividades').once('value', snapshot => {
+    let actividades = snapshot.val() || [];
+    actividades.splice(index, 1);
+    db.ref('actividades').set(actividades);
+  });
 }
 
 function marcarActividad(index) {
-  let actividades = JSON.parse(localStorage.getItem("actividades")) || [];
-  actividades[index].hecha = !actividades[index].hecha; // Cambiar el estado de "hecha"
-  localStorage.setItem("actividades", JSON.stringify(actividades));
-  cargarActividades();
+  db.ref('actividades').once('value', snapshot => {
+    let actividades = snapshot.val() || [];
+    actividades[index].hecha = !actividades[index].hecha;
+    db.ref('actividades').set(actividades);
+  });
 }
 
+let listenerSet = false;
 function cargarActividades() {
   const lista = document.getElementById("actividades");
-  lista.innerHTML = "";
-  const actividades = JSON.parse(localStorage.getItem("actividades")) || [];
+  if (listenerSet) return; // Evita múltiples listeners
+  listenerSet = true;
 
-  actividades.forEach((actividad, index) => {
-    const li = document.createElement("li");
+  db.ref('actividades').on('value', snapshot => {
+    const actividades = snapshot.val() || [];
+    lista.innerHTML = "";
+    actividades.forEach((actividad, index) => {
+      const li = document.createElement("li");
 
-    // Crear el contenedor de la imagen
-    const imgContainer = document.createElement("div");
-    imgContainer.classList.add("img-container");
+      // Imagen (opcional)
+      const imgContainer = document.createElement("div");
+      imgContainer.classList.add("img-container");
+      const img = document.createElement("img");
+      img.src = "imagenes/nosotros.png";
+      img.alt = "Imagen de actividad";
+      imgContainer.appendChild(img);
 
-    // Crear la imagen
-    const img = document.createElement("img");
-    img.src = "imagenes/nosotros.png"; // Ruta relativa a la carpeta del proyecto
-    img.alt = "Imagen de actividad";
-    imgContainer.appendChild(img);
+      // Checkbox
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = actividad.hecha;
+      checkbox.onclick = () => marcarActividad(index);
 
-    // Crear el checkbox
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = actividad.hecha; // Marcar si está hecha
-    checkbox.onclick = () => marcarActividad(index);
+      // Texto
+      const texto = document.createElement("span");
+      texto.textContent = actividad.texto;
+      texto.title = actividad.texto; // Para tooltip nativo
+      texto.style.textDecoration = actividad.hecha ? "line-through" : "none";
+      texto.style.color = actividad.hecha ? "gray" : "black";
 
-    // Crear el texto de la actividad
-    const texto = document.createElement("span");
-    texto.textContent = actividad.texto;
-    texto.style.textDecoration = actividad.hecha ? "line-through" : "none"; // Tachado si está hecha
-    texto.style.color = actividad.hecha ? "gray" : "black";
+      // Espera a que el span esté en el DOM para medirlo
+      setTimeout(() => {
+        if (texto.scrollWidth > texto.clientWidth) {
+          texto.classList.add("truncado");
+        } else {
+          texto.classList.remove("truncado");
+        }
+      }, 0);
 
-    // Crear el botón eliminar
-    const botonEliminar = document.createElement("button");
-    botonEliminar.textContent = "Eliminar";
-    botonEliminar.onclick = () => eliminarActividad(index);
+      // Botón eliminar
+      const botonEliminar = document.createElement("button");
+      botonEliminar.textContent = "Eliminar";
+      botonEliminar.onclick = () => eliminarActividad(index);
 
-    // Agregar los elementos al <li>
-    li.appendChild(imgContainer);
-    li.appendChild(checkbox);
-    li.appendChild(texto);
-    li.appendChild(botonEliminar);
+      li.appendChild(imgContainer);
+      li.appendChild(checkbox);
+      li.appendChild(texto);
+      li.appendChild(botonEliminar);
 
-    // Agregar el <li> a la lista
-    lista.appendChild(li);
+      lista.appendChild(li);
+    });
+  });
+
+  // Permitir agregar con Enter
+  document.getElementById("nuevaActividad").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      agregarActividad();
+    }
   });
 }
