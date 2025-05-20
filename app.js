@@ -1,9 +1,3 @@
-function mostrarLista() {
-  document.getElementById('inicio').style.display = 'none';
-  document.getElementById('lista').style.display = 'block';
-  cargarActividades();
-}
-
 function agregarActividad() {
   const input = document.getElementById("nuevaActividad");
   const actividad = input.value.trim();
@@ -96,4 +90,9 @@ function cargarActividades() {
       agregarActividad();
     }
   });
+}
+
+// Ejecutar cargarActividades solo si existe el elemento en la página
+if (document.getElementById("actividades")) {
+  cargarActividades();
 }

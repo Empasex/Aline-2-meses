@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Aline Del Valle Castillo Bedoya Leon</title>
+  <title>Lista de actividades | Aline & Diego</title>
   <link rel="stylesheet" href="style.css">
   <!-- Firebase SDKs y configuración -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -23,7 +23,6 @@
   </script>
 </head>
 <body>
-  <!-- Barra de navegación -->
   <nav class="navbar">
     <div class="navbar-logo">
       <img src="imagenes/corazon.png" alt="Logo" />
@@ -37,14 +36,14 @@
     </ul>
   </nav>
 
-  <!-- Sección principal de bienvenida -->
-  <section id="inicio" class="hero">
-    <h1>Feliz Aniversario de 2 meses ❤️</h1>
-    <div class="hero-imgs">
-      <img src="imagenes/pareja-romantica.png" alt="Pareja" class="hero-img hero-img-left">
-      <img src="imagenes/pareja-romanticaAline.png" alt="Pareja" class="hero-img hero-img-right">
-    </div>
-    <p class="hero-text">Este es nuestro rincón especial en donde guardamos planes, recuerdos, música y más cosas, ¡bienvenidos!</p>
+  <section id="lista">
+    <h2>Lista de actividades que queremos hacer en pareja</h2>
+    <input type="text" id="nuevaActividad" placeholder="Ej: Darnos muchos besos">
+    <button onclick="agregarActividad()">Agregar</button>
+    <ul id="actividades"></ul>
+    <button onclick="window.location.href='index.html'">Regresar al inicio</button>
   </section>
+
+  <script src="app.js"></script>
 </body>
 </html>

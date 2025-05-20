@@ -5,6 +5,53 @@ body {
   padding: 20px;
 }
 
+/* Barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff0f5;
+  padding: 10px 30px;
+  box-shadow: 0 2px 8px rgba(214, 51, 132, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5em;
+  color: #d63384;
+  font-weight: bold;
+}
+
+.navbar-logo img {
+  width: 36px;
+  height: 36px;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #d63384;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.2s;
+}
+
+.navbar-links li a:hover {
+  color: #ff69b4;
+}
+
 h1, h2 {
   color: #d63384;
 }
@@ -111,4 +158,114 @@ li button {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 10px 10px 10px;
+}
+
+.hero-imgs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.hero-img-left {
+  transform: scaleX(-1);
+}
+
+.hero-img {
+  width: 180px;
+  max-width: 90vw;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(214, 51, 132, 0.08);
+}
+
+.hero-text {
+  font-size: 1.2em;
+  color: #d63384;
+  margin-bottom: 25px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --- GALERÍA DE FOTOS --- */
+.galeria-overlay {
+  background: #fff;
+  border: 4px solid #80323d;
+  border-radius: 18px;
+  padding: 32px 18px;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  box-shadow: 0 4px 24px rgba(214,51,132,0.08);
+  position: relative;
+}
+.galeria-overlay::before {
+  content: none;
+}
+.galeria-overlay > * {
+  position: relative;
+  z-index: 1;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin: 35px 0 0 0;
+}
+
+.galeria-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.galeria-eliminar {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+.galeria-eliminar:hover {
+  opacity: 1;
 }

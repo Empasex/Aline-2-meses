@@ -2,11 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Aline Del Valle Castillo Bedoya Leon</title>
+  <title>Galería de Fotos</title>
   <link rel="stylesheet" href="style.css">
   <!-- Firebase SDKs y configuración -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyC4A0igNsDY01yJ0AP_pbg3QLt20VQq_VM",
@@ -20,10 +21,10 @@
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
+    const storage = firebase.storage();
   </script>
 </head>
 <body>
-  <!-- Barra de navegación -->
   <nav class="navbar">
     <div class="navbar-logo">
       <img src="imagenes/corazon.png" alt="Logo" />
@@ -37,14 +38,17 @@
     </ul>
   </nav>
 
-  <!-- Sección principal de bienvenida -->
-  <section id="inicio" class="hero">
-    <h1>Feliz Aniversario de 2 meses ❤️</h1>
-    <div class="hero-imgs">
-      <img src="imagenes/pareja-romantica.png" alt="Pareja" class="hero-img hero-img-left">
-      <img src="imagenes/pareja-romanticaAline.png" alt="Pareja" class="hero-img hero-img-right">
-    </div>
-    <p class="hero-text">Este es nuestro rincón especial en donde guardamos planes, recuerdos, música y más cosas, ¡bienvenidos!</p>
-  </section>
+  <div class="galeria-overlay">
+    <h1>Galería de Fotos 📸</h1>
+    <form id="formGaleria" onsubmit="agregarFoto(event)">
+      <input type="url" id="nuevaFoto" placeholder="Pega aquí la URL de la foto">
+      <span>o</span>
+      <input type="file" id="archivoFoto" accept="image/*">
+      <button type="submit">Agregar Foto</button>
+    </form>
+    <div id="galeria" class="galeria-grid"></div>
+    <button onclick="window.location.href='index.html'">Volver al inicio</button>
+  </div>
+  <script src="galeria.js"></script>
 </body>
 </html>
