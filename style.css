@@ -2,14 +2,14 @@ body {
   font-family: 'Arial', sans-serif;
   text-align: center;
   background-color: #fff0f5;
-  padding: 20px;
+  padding: 0;
 }
 
 /* Barra de navegación */
 .navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;      /* Cambia a columna para centrar verticalmente */
+  align-items: center;         /* Centra horizontalmente */
   background: #fff0f5;
   padding: 10px 30px;
   box-shadow: 0 2px 8px rgba(214, 51, 132, 0.08);
@@ -25,6 +25,7 @@ body {
   font-size: 1.5em;
   color: #d63384;
   font-weight: bold;
+  margin-bottom: 8px;          /* Espacio entre logo y links */
 }
 
 .navbar-logo img {
@@ -38,8 +39,8 @@ body {
   gap: 25px;
   margin: 0;
   padding: 0;
+  justify-content: center;     /* Centra los links */
 }
-
 .navbar-links li a {
   text-decoration: none;
   color: #d63384;
@@ -165,8 +166,8 @@ li button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 60vh;
+  justify-content: flex-start; /* Alinea arriba */
+  min-height: unset;           /* O pon un valor menor, o elimínalo */
   padding: 40px 10px 10px 10px;
 }
 
@@ -178,9 +179,6 @@ li button {
   margin-bottom: 20px;
 }
 
-.hero-img-left {
-  transform: scaleX(-1);
-}
 
 .hero-img {
   width: 180px;
@@ -216,9 +214,15 @@ li button {
 .galeria-overlay::before {
   content: none;
 }
-.galeria-overlay > * {
+.galeria-overlay {
+  background: #fff;
+  border: 4px solid #80323d;
+  border-radius: 18px;
+  padding: 32px 18px;
+  max-width: 1200px;
+  margin: 10px auto 0 auto; /* <-- Menos espacio arriba */
+  box-shadow: 0 4px 24px rgba(214,51,132,0.08);
   position: relative;
-  z-index: 1;
 }
 
 .galeria-grid {
@@ -268,4 +272,33 @@ li button {
 }
 .galeria-eliminar:hover {
   opacity: 1;
+}
+
+.lightbox-arrow {
+  padding: 0 !important;
+  margin: 0 !important;
+  outline: none !important;
+  color: #ffb6d5 !important;
+  background: none !important;
+  border: none !important;
+  font-size: 2.7em !important;
+  font-weight: 900 !important;
+  border-radius: 0 !important;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.lightbox-arrow:hover {
+  color: #ff69b4 !important;
+  transform: scale(1.5);
+}
+
+.lightbox-arrow:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }

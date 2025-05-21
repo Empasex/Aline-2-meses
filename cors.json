@@ -1,0 +1,7 @@
+[
+  {
+    "origin": ["https://empasex.github.io"],
+    "method": ["GET", "POST", "PUT", "OPTIONS", "HEAD"],
+    "maxAgeSeconds": 3600
+  }
+]
